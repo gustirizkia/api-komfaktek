@@ -1,0 +1,13 @@
+- user login atau register
+// daftar lk 1
+- nama asli
+- foto ktm
+- foto formal 3x4
+- bukti pembayaran atau menggunakan api payment
+
+//screening
+- user_id
+- status
+- nilai
+- nama panitia
+- ttd panitia
