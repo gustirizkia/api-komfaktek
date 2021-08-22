@@ -10,7 +10,7 @@ class Event extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nama', 'image', 'mulai', 'deskripsi', 'harga'
+        'nama', 'image', 'mulai', 'deskripsi', 'harga', 'kategori_id'
     ];
 
     public function pemateri()
@@ -26,5 +26,10 @@ class Event extends Model
     public function joinEvent()
     {
         return $this->hasMany('App\Models\JoinEvent');
+    }
+
+    public function kategori()
+    {
+        return $this->belongsTo('App\Models\Kategori');
     }
 }

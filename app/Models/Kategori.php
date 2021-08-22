@@ -5,16 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class UserDetail extends Model
+class Kategori extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'image', 'alamat', 'profesi', 'tgl_lahir'
+        'nama'
     ];
 
-    public function user()
+    public function event()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->hasMany("App\Models\Event");
     }
 }

@@ -21,9 +21,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
 
 // auth
 Route::post('login', [AuthController::class, 'login']);
@@ -31,6 +28,7 @@ Route::post('register', [AuthController::class, 'register']);
 
 // user
 Route::get('profile', [UserController::class, 'profile'])->middleware('auth:sanctum');
+Route::post('profile/update', [UserController::class, 'update'])->middleware('auth:sanctum');
 
 // daftar lk
 Route::post('daftarlk/create', [DaftarLkController::class, 'create'])->middleware('auth:sanctum');
@@ -44,6 +42,8 @@ Route::post('tulisan/create', [TulisanController::class, 'create'])->middleware(
 // event
 Route::get('event', [EventController::class, 'index']);
 Route::get('event/{id}', [EventController::class, 'show']);
+Route::get('kategori', [EventController::class, 'kategoriAll']);
+Route::get('kategori/{id}', [EventController::class, 'kategori']);
 
 // joinevent
 Route::post('event/join/create', [JoinEventController::class, 'create'])->middleware('auth:sanctum');

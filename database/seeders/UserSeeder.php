@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Event;
 use App\Models\JoinEvent;
+use App\Models\Kategori;
 use App\Models\Moderator;
 use App\Models\Pemateri;
 use App\Models\User;
@@ -45,17 +46,26 @@ class UserSeeder extends Seeder
             ]);
         }
 
-
-        $mulai = Carbon::now()->addWeeks();
-        for ($i = 1; $i < 6; $i++) {
-            Event::create([
-                'nama' => $faker->sentence($nbWords = 6, $variableNbWords = true),
-                'image' => 'https://lorempixel.com/310/310/technics/',
-                'mulai' => $mulai,
-                'deskripsi' => $faker->paragraph($nbSentences = 120, $variableNbSentences = true)
+        for ($i = 0; $i < 4; $i++) {
+            Kategori::create([
+                'nama' => $faker->word
             ]);
         }
-        for ($i = 1; $i < 6; $i++) {
+
+        for ($i = 1; $i < 4; $i++) {
+            for ($j = 1; $j < 4; $j++) {
+                $mulai = Carbon::now()->addDay(3 + $j);
+                Event::create([
+                    'kategori_id' => $i,
+                    'nama' => $faker->sentence($nbWords = 6, $variableNbWords = true),
+                    'image' => 'https://lorempixel.com/310/310/technics/',
+                    'mulai' => $mulai,
+                    'deskripsi' => $faker->paragraph($nbSentences = 50, $variableNbSentences = true)
+                ]);
+            }
+        }
+
+        for ($i = 1; $i < 4; $i++) {
             Pemateri::create([
                 'event_id' => $i,
                 'nama' => $faker->name,
@@ -66,18 +76,19 @@ class UserSeeder extends Seeder
             ]);
         }
 
-        for ($i = 1; $i < 6; $i++) {
+        for ($i = 1; $i < 4; $i++) {
             Moderator::create([
                 'event_id' => $i,
                 'user_id' => $i
             ]);
         }
 
-        for ($i = 1; $i < 6; $i++) {
+        for ($i = 1; $i < 4; $i++) {
             for ($j = 1; $j < 4; $j++) {
                 JoinEvent::create([
                     'event_id' => $i,
-                    'user_id' => $i
+                    'user_id' => $i,
+                    'status' => 'sukses'
                 ]);
             }
         }

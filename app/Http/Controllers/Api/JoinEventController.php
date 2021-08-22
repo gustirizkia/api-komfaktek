@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Event;
 use App\Models\JoinEvent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,6 +25,18 @@ class JoinEventController extends Controller
             ], 400);
         }
         $data['user_id'] = Auth::user()->id;
+
+        $event_id = $request->input('event_id');
+        $event = Event::find($event_id);
+        if (!$event) {
+            return response()->json([
+                'success' => false,
+                'message' => 'data event not found'
+            ], 404);
+        }
+        if ($event->harga === 0) {
+            $data['status'] = 'sukses';
+        }
 
         $join_event = JoinEvent::create($data);
 
