@@ -7,6 +7,7 @@ use App\Models\JoinEvent;
 use App\Models\Moderator;
 use App\Models\Pemateri;
 use App\Models\User;
+use App\Models\UserDetail;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -29,13 +30,21 @@ class UserSeeder extends Seeder
             'roles' => 'admin'
         ]);
 
-        for ($i = 1; $i < 30; $i++) {
+        for ($i = 0; $i < 4; $i++) {
             User::create([
                 'name' => $faker->name,
                 'email' => $faker->email,
                 'password' => Hash::make('password'),
             ]);
         }
+        for ($i = 1; $i < 6; $i++) {
+            UserDetail::create([
+                'user_id' => $i,
+                'alamat' => $faker->address,
+                'profesi' => $faker->jobTitle . ', ' . $faker->company
+            ]);
+        }
+
 
         $mulai = Carbon::now()->addWeeks();
         for ($i = 1; $i < 6; $i++) {
