@@ -20,8 +20,7 @@ class AuthController extends Controller
         $data = $request->all();
 
         $validator = Validator::make($data, $rules);
-        if($validator->fails())
-        {
+        if ($validator->fails()) {
             return response()->json([
                 'success' => false,
                 'message' => $validator->errors()
@@ -30,19 +29,19 @@ class AuthController extends Controller
 
         $email = $request->input('email');
         $password = $request->input('password');
-        if(Auth::attempt(['email' => $email, 'password' => $password]))
-        {
+        if (Auth::attempt(['email' => $email, 'password' => $password])) {
             $user = Auth::user();
             $token = $user->createToken('myToken')->plainTextToken;
             return response()->json([
                 'success' => true,
                 'message' => 'login berhasil',
+                'data' => $user,
                 'token' => $token
             ]);
-        }else{
+        } else {
             return response()->json([
                 'success' => false,
-                'message' => 'unathorized' 
+                'message' => 'unathorized'
             ], 401);
         }
     }
@@ -56,8 +55,7 @@ class AuthController extends Controller
         ];
         $data = $request->all();
         $validator = Validator::make($data, $rules);
-        if($validator->fails())
-        {
+        if ($validator->fails()) {
             return response()->json([
                 'success' => false,
                 'message' => $validator->errors()

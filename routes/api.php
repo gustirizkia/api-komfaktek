@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\DaftarLkController;
+use App\Http\Controllers\Api\EventController;
+use App\Http\Controllers\Api\JoinEventController;
 use App\Http\Controllers\Api\TulisanController;
 use App\Http\Controllers\Api\UserController;
 use App\Models\Tulisan;
@@ -38,3 +40,11 @@ Route::get('tulisan', [TulisanController::class, 'index']);
 Route::get('tulisan/{id}', [TulisanController::class, 'show']);
 Route::delete('tulisan/{id}', [TulisanController::class, 'delete']);
 Route::post('tulisan/create', [TulisanController::class, 'create'])->middleware('auth:sanctum');
+
+// event
+Route::get('event', [EventController::class, 'index']);
+Route::get('event/{id}', [EventController::class, 'show']);
+
+// joinevent
+Route::post('event/join/create', [JoinEventController::class, 'create'])->middleware('auth:sanctum');
+Route::get('event-saya', [JoinEventController::class, 'myEvent'])->middleware('auth:sanctum');

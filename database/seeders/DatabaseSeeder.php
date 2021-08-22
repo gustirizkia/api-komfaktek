@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
             KategoriTulisanSeeder::class,
             TulisanSeeder::class,
             CampaigSeeder::class,
-            CampaigImage::class,
+            CampaigImageSeeder::class,
         ]);
     }
 }

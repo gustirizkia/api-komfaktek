@@ -16,6 +16,7 @@ class CreateCampaigsTable extends Migration
         Schema::create('campaigs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->string('status')->default('tidak aktif');
             $table->string('nama');
             $table->longText('deskripsi');
             $table->integer('goal_amount');
