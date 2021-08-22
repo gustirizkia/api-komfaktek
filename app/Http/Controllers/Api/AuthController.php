@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\UserDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -65,6 +66,10 @@ class AuthController extends Controller
         $data['password'] = Hash::make($request->input('password'));
         $user = User::create($data);
         $token = $user->createToken('authToken')->plainTextToken;
+
+        $user_detail = UserDetail::create([
+            'user_id' => $user->id,
+        ]);
 
         return response()->json([
             'success' => true,
