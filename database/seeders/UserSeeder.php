@@ -64,23 +64,31 @@ class UserSeeder extends Seeder
                 ]);
             }
         }
-
+        $no = 0;
         for ($i = 1; $i < 4; $i++) {
-            Pemateri::create([
-                'event_id' => $i,
-                'nama' => $faker->name,
-                'image' => 'https://lorempixel.com/200/200/people/',
-                'title' => $faker->jobTitle . ', ' . $faker->company,
-                'email' => $faker->email,
-                'alamat' => $faker->address
-            ]);
+            for ($j = 1; $j < 4; $j++) {
+                $no += 1;
+                Pemateri::create([
+                    'event_id' => $no,
+                    'nama' => $faker->name,
+                    'image' => 'https://lorempixel.com/200/200/people/',
+                    'title' => $faker->jobTitle . ', ' . $faker->company,
+                    'email' => $faker->email,
+                    'alamat' => $faker->address
+                ]);
+            }
         }
 
+        $no = 0;
         for ($i = 1; $i < 4; $i++) {
-            Moderator::create([
-                'event_id' => $i,
-                'user_id' => $i
-            ]);
+
+            for ($j = 1; $j < 4; $j++) {
+                $no += 1;
+                Moderator::create([
+                    'event_id' => $no,
+                    'user_id' => $i
+                ]);
+            }
         }
 
         for ($i = 1; $i < 4; $i++) {
