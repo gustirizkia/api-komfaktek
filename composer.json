@@ -4,6 +4,7 @@
     "description": "The Laravel Framework.",
     "keywords": ["framework", "laravel"],
     "license": "MIT",
+    "post-install-cmd": [ "ln -sr storage/app/public public/storage" ],
     "require": {
         "php": "^7.3|^8.0",
         "fideloper/proxy": "^4.4",
