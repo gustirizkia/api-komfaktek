@@ -48,6 +48,10 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Models\UserDetail');
     }
+    public function moderator()
+    {
+        return $this->hasOne('App\Models\Moderator');
+    }
     public function tulisan()
     {
         return $this->hasMany(Tulisan::class);

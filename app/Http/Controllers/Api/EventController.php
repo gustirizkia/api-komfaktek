@@ -21,7 +21,7 @@ class EventController extends Controller
 
     public function show($id)
     {
-        $data = Event::with('pemateri', 'moderator.user')->withCount('joinEvent')->find($id);
+        $data = Event::with('pemateri', 'moderator.user.user_detail')->withCount('joinEvent')->find($id);
         if (!$data) {
             return response()->json([
                 'status' => 'error',
