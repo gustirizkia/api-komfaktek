@@ -50,7 +50,7 @@ class JoinEventController extends Controller
     public function myEvent()
     {
         $userId = Auth::user()->id;
-        $data = JoinEvent::where('user_id', $userId)->with('acaraSaya.pemateri')->get();
+        $data = JoinEvent::where('user_id', $userId)->with('acara.pemateri')->get();
         $data['count_my_event'] = $data->count();
 
         return response()->json([
