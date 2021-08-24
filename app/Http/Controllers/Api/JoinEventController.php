@@ -51,7 +51,7 @@ class JoinEventController extends Controller
     {
         $userId = Auth::user()->id;
         $data = JoinEvent::where('user_id', $userId)->with('acara.pemateri')->get();
-        $data['count_my_event'] = $data->count();
+        // $data['count_my_event'] = $data->count();
 
         return response()->json([
             'status' => 'success',
