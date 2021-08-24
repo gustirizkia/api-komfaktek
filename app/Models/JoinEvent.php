@@ -21,4 +21,8 @@ class JoinEvent extends Model
     {
         return $this->belongsTo('App\Models\Event');
     }
+    public function acaraSaya()
+    {
+        return $this->event();
+    }
 }
