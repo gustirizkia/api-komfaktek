@@ -17,7 +17,7 @@ class JoinEvent extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
-    public function event()
+    public function acara()
     {
         return $this->belongsTo('App\Models\Event');
     }
