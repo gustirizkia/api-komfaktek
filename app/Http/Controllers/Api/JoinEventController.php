@@ -24,7 +24,14 @@ class JoinEventController extends Controller
                 'message' => $validator->errors()
             ], 400);
         }
+
         $data['user_id'] = Auth::user()->id;
+
+        // $userId = Auth::user()->id;
+        // // $sudahJoin = Event::where('user_id', $userId)->first();
+        // // if($sudahJoin){
+        // //     return response()
+        // // }
 
         $event_id = $request->input('event_id');
         $event = Event::find($event_id);

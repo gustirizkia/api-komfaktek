@@ -45,6 +45,17 @@ class UserSeeder extends Seeder
                 'profesi' => $faker->jobTitle . ', ' . $faker->company
             ]);
         }
+        User::create([
+            'name' => 'Super Admin Komfaktek',
+            'email' => 'admin@komfaktek.com',
+            'password' => Hash::make('admin 2021'),
+            'roles' => 'super admin'
+        ]);
+        UserDetail::create([
+            'user_id' => 6,
+            'alamat' => $faker->address,
+            'profesi' => $faker->jobTitle . ', ' . $faker->company
+        ]);
 
         for ($i = 0; $i < 4; $i++) {
             Kategori::create([

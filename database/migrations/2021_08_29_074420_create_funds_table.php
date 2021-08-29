@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCampaigsTable extends Migration
+class CreateFundsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,15 @@ class CreateCampaigsTable extends Migration
      */
     public function up()
     {
-        Schema::create('campaigs', function (Blueprint $table) {
+        Schema::create('funds', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->string('status')->default('tidak aktif');
-            $table->string('nama');
+            $table->string('judul');
+            $table->bigInteger('goal_amount');
+            $table->bigInteger('current_amout');
             $table->longText('deskripsi');
-            $table->integer('goal_amount');
-            $table->integer('current_amout');
+            $table->string('status')->default('pending');
+            $table->string('thumbnail');
             $table->string('alamat');
             $table->string('provinsi')->nullable();
             $table->string('kota')->nullable();
@@ -36,6 +37,6 @@ class CreateCampaigsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('campaigs');
+        Schema::dropIfExists('funds');
     }
 }

@@ -19,8 +19,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             KategoriTulisanSeeder::class,
             TulisanSeeder::class,
-            CampaigSeeder::class,
-            CampaigImageSeeder::class,
+            FoundSeeder::class,
+            OrangBaikSeeder::class,
         ]);
     }
 }

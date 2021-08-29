@@ -2,8 +2,13 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\DaftarLkController;
+use App\Http\Controllers\Api\DonasiController;
 use App\Http\Controllers\Api\EventController;
+use App\Http\Controllers\Api\FoundRaisController;
 use App\Http\Controllers\Api\JoinEventController;
+use App\Http\Controllers\Api\MethodPaymentController;
+use App\Http\Controllers\Api\SertfikatController;
+use App\Http\Controllers\Api\TripayPaymentController;
 use App\Http\Controllers\Api\TulisanController;
 use App\Http\Controllers\Api\UserController;
 use App\Models\Tulisan;
@@ -48,3 +53,17 @@ Route::get('kategori/{id}', [EventController::class, 'kategori']);
 // joinevent
 Route::post('event/join/create', [JoinEventController::class, 'create'])->middleware('auth:sanctum');
 Route::get('event-saya', [JoinEventController::class, 'myEvent'])->middleware('auth:sanctum');
+Route::post('cek-sertifikat', [SertfikatController::class, 'cekSerti'])->middleware('auth:sanctum');
+Route::post('cek-sertifikat/index', [SertfikatController::class, 'index'])->middleware('auth:sanctum');
+
+// fund raise
+Route::get('galang-dana', [FoundRaisController::class, 'index']);
+Route::get('galang-dana/{id}', [FoundRaisController::class, 'detailFund']);
+// donasi
+Route::get('my-donasi', [DonasiController::class, 'myDonasi'])->middleware('auth:sanctum');
+Route::post('donasi/create', [DonasiController::class, 'create'])->middleware('auth:sanctum');
+Route::post('webhook', [DonasiController::class, 'handleCallbackMidtrans'])->middleware('auth:sanctum');
+
+Route::post('api-intgerasi', [MethodPaymentController::class, 'alfamart']);
+// tripay
+Route::post('transaksi-tripay', [TripayPaymentController::class, 'create'])->middleware('auth:sanctum');
