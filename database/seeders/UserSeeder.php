@@ -69,7 +69,7 @@ class UserSeeder extends Seeder
                 Event::create([
                     'kategori_id' => $i,
                     'nama' => $faker->sentence($nbWords = 6, $variableNbWords = true),
-                    'image' => 'https://source.unsplash.com/310x310/?school/' . $p,
+                    'image' => 'https://source.unsplash.com/349x176/?school/' . $p,
                     'mulai' => $mulai,
                     'deskripsi' => $faker->paragraph($nbSentences = 50, $variableNbSentences = true)
                 ]);
@@ -83,7 +83,7 @@ class UserSeeder extends Seeder
                 Pemateri::create([
                     'event_id' => $no,
                     'nama' => $faker->name,
-                    'image' => 'https://source.unsplash.com/310x310/?people/',
+                    'image' => 'https://source.unsplash.com/349x176/?people/',
                     'title' => $faker->jobTitle . ', ' . $faker->company,
                     'email' => $faker->email,
                     'alamat' => $faker->address

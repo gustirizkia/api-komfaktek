@@ -21,7 +21,7 @@ class TulisanSeeder extends Seeder
                 Tulisan::create([
                     'user_id' => 1,
                     'kategori_tulisan_id' => 1,
-                    'image' => 'https://source.unsplash.com/310x310/?nature/' . $i,
+                    'image' => 'https://source.unsplash.com/349x176/?nature/' . $i,
                     'judul' =>
                     $faker->sentence($nbWords = 5, $variableNbWords = true),
                     'teks' =>
@@ -31,7 +31,7 @@ class TulisanSeeder extends Seeder
                 Tulisan::create([
                     'user_id' => 1,
                     'kategori_tulisan_id' => 2,
-                    'image' => 'https://source.unsplash.com/310x310/?nature/' . $i,
+                    'image' => 'https://source.unsplash.com/349x176/?nature/' . $i,
                     'judul' =>
                     $faker->sentence($nbWords = 5, $variableNbWords = true),
                     'teks' =>
