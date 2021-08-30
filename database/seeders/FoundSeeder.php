@@ -21,6 +21,7 @@ class FoundSeeder extends Seeder
         Fund::create([
             'user_id' => $user_id,
             'status' => 'verify',
+            'kota' => 'Tangerang',
             'judul' =>
             'Galang Dana Untuk Palestina Bersam HMI KOMFAKTEK',
             'goal_amount' => $faker->randomNumber($nbDigits = 7, $strict = false),
@@ -31,61 +32,30 @@ class FoundSeeder extends Seeder
             'thumbnail' => 'https://gusti-hmi-komfaktek-v-beta-1.netlify.app/public/image/Instagram%20post%20-%207.png'
         ]);
         Fund::create([
-            'user_id' => $user_id + 1,
-            'status' => 'verify',
-            'judul' =>
-            $faker->sentence($nbWords = 5, $variableNbWords = true),
-            'goal_amount' => $faker->randomNumber($nbDigits = 7, $strict = false),
-            'alamat' => $faker->address,
-            'current_amout' => $faker->randomNumber($nbDigits = 5, $strict = false),
-            'deskripsi' => $faker->paragraph($nbSentences = 50, $variableNbSentences = true),
-            'thumbnail' => 'https://placeimg.com/349/176/tech'
-        ]);
-        Fund::create([
-            'user_id' => $user_id + 2,
-            'status' => 'verify',
-            'judul' =>
-            $faker->sentence($nbWords = 5, $variableNbWords = true),
-            'goal_amount' => $faker->randomNumber($nbDigits = 7, $strict = false),
-            'alamat' => $faker->address,
-            'current_amout' => $faker->randomNumber($nbDigits = 5, $strict = false),
-            'deskripsi' => $faker->paragraph($nbSentences = 50, $variableNbSentences = true),
-            'thumbnail' => 'https://placeimg.com/349/176/tech'
-        ]);
-
-        $user_id = 1;
-        Fund::create([
             'user_id' => $user_id,
             'status' => 'verify',
             'judul' =>
             $faker->sentence($nbWords = 5, $variableNbWords = true),
             'goal_amount' => $faker->randomNumber($nbDigits = 7, $strict = false),
             'alamat' => $faker->address,
+            'kota' => $faker->city,
             'current_amout' => $faker->randomNumber($nbDigits = 5, $strict = false),
             'deskripsi' => $faker->paragraph($nbSentences = 50, $variableNbSentences = true),
-            'thumbnail' => 'https://placeimg.com/349/176/tech'
+            'thumbnail' => 'https://source.unsplash.com/349x176/?earthquake/8'
         ]);
-        Fund::create([
-            'user_id' => $user_id + 1,
-            'status' => 'verify',
-            'judul' =>
-            $faker->sentence($nbWords = 5, $variableNbWords = true),
-            'goal_amount' => $faker->randomNumber($nbDigits = 7, $strict = false),
-            'alamat' => $faker->address,
-            'current_amout' => $faker->randomNumber($nbDigits = 5, $strict = false),
-            'deskripsi' => $faker->paragraph($nbSentences = 50, $variableNbSentences = true),
-            'thumbnail' => 'https://placeimg.com/349/176/tech'
-        ]);
-        Fund::create([
-            'user_id' => $user_id + 3,
-            'status' => 'verify',
-            'judul' =>
-            $faker->sentence($nbWords = 5, $variableNbWords = true),
-            'goal_amount' => $faker->randomNumber($nbDigits = 7, $strict = false),
-            'alamat' => $faker->address,
-            'current_amout' => $faker->randomNumber($nbDigits = 5, $strict = false),
-            'deskripsi' => $faker->paragraph($nbSentences = 50, $variableNbSentences = true),
-            'thumbnail' => 'https://placeimg.com/349/176/tech'
-        ]);
+        for ($i = 1; $i < 5; $i++) {
+            Fund::create([
+                'user_id' => $user_id + 1,
+                'status' => 'verify',
+                'judul' =>
+                $faker->sentence($nbWords = 5, $variableNbWords = true),
+                'goal_amount' => $faker->randomNumber($nbDigits = 7, $strict = false),
+                'alamat' => $faker->address,
+                'kota' => $faker->city,
+                'current_amout' => $faker->randomNumber($nbDigits = 5, $strict = false),
+                'deskripsi' => $faker->paragraph($nbSentences = 50, $variableNbSentences = true),
+                'thumbnail' => 'https://source.unsplash.com/349x176/?earthquake/' . $i
+            ]);
+        }
     }
 }

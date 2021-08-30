@@ -62,17 +62,18 @@ class UserSeeder extends Seeder
                 'nama' => $faker->word
             ]);
         }
-
+        $p = 1;
         for ($i = 1; $i < 4; $i++) {
             for ($j = 1; $j < 4; $j++) {
                 $mulai = Carbon::now()->addDay(3 + $j);
                 Event::create([
                     'kategori_id' => $i,
                     'nama' => $faker->sentence($nbWords = 6, $variableNbWords = true),
-                    'image' => 'https://lorempixel.com/310/310/technics/',
+                    'image' => 'https://source.unsplash.com/310x310/?school/' . $p,
                     'mulai' => $mulai,
                     'deskripsi' => $faker->paragraph($nbSentences = 50, $variableNbSentences = true)
                 ]);
+                $p++;
             }
         }
         $no = 0;
@@ -82,7 +83,7 @@ class UserSeeder extends Seeder
                 Pemateri::create([
                     'event_id' => $no,
                     'nama' => $faker->name,
-                    'image' => 'https://lorempixel.com/200/200/people/',
+                    'image' => 'https://source.unsplash.com/310x310/?people/',
                     'title' => $faker->jobTitle . ', ' . $faker->company,
                     'email' => $faker->email,
                     'alamat' => $faker->address
