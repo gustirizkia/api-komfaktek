@@ -69,7 +69,7 @@ Route::post('api-intgerasi', [MethodPaymentController::class, 'alfamart']);
 // tripay
 Route::post('transaksi-tripay', [TripayPaymentController::class, 'create'])->middleware('auth:sanctum');
 
-Route::post('rekening/create', [RekeningController::class, 'create'])->middleware('auth:sanctum');
+Route::post('rekening/create', [RekeningController::class, 'create'])->middleware('auth:sanctum', 'apiAdmin');
 Route::get('rekening', [RekeningController::class, 'index']);
 
 Route::post('daftarlk/create', [DaftarLkController::class, 'create'])->middleware('auth:sanctum');

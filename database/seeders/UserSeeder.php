@@ -7,6 +7,7 @@ use App\Models\JoinEvent;
 use App\Models\Kategori;
 use App\Models\Moderator;
 use App\Models\Pemateri;
+use App\Models\Rekening;
 use App\Models\User;
 use App\Models\UserDetail;
 use Carbon\Carbon;
@@ -112,5 +113,16 @@ class UserSeeder extends Seeder
                 ]);
             }
         }
+
+        Rekening::create([
+            "nama_bank" => "BRI",
+            "nomor_bank" => "11092121",
+            "atas_nama" => "HMI KOMFAKTEK"
+        ]);
+        Rekening::create([
+            "nama_bank" => "BCA",
+            "nomor_bank" => "0911278",
+            "atas_nama" => "HMI KOMFAKTEK"
+        ]);
     }
 }
