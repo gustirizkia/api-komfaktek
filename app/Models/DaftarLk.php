@@ -10,11 +10,11 @@ class DaftarLk extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'status_pembayaran', 'nama', 'image_pribadi', 'image_ktm', 'semester', 'alamat', 'note'
+        'rekening_id', 'user_id', 'nama', 'email', 'nomor_wa', 'nomor_mhs', 'prodi', 'alamat', 'tgl_lahir', 'jk', 'status', 'smstr', 'foto_diri', 'foto_ktm', 'foto_ktp', 'foto_bukti_byr'
     ];
 
-    public function user()
+    public function rekening()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo('App\Rekening');
     }
 }

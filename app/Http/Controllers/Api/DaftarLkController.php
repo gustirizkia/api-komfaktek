@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\DaftarLk;
+use App\Models\Rekening;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,44 +12,75 @@ use Illuminate\Support\Facades\Validator;
 
 class DaftarLkController extends Controller
 {
+    public function isDaftarLk()
+    {
+        $userId = Auth::user()->id;
+        $userIsDaftar = DaftarLk::where('user_id', $userId)->first();
+        if (!$userIsDaftar) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'user belum daftar lk 1',
+
+            ], 400);
+        } else {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'user sudah daftar lk',
+                'data' => $userIsDaftar
+            ], 200);
+        }
+    }
     public function create(Request $request)
     {
-        // 'user_id', 'status_pembayara', 'nama', 'image_pribadi', 'image_ktm', 
-        // 'semester', 'alamat', 'note'
+        // 'rekening_id', 'nama', 'email', 'nomor_wa', 'nomor_mhs', 'prodi', 'alamat', 'tgl_lahir', 'jk', 'status' 'foto_diri', 'foto_ktm', 'foto_ktp', 'foto_bukti_byr'
         $rules = [
-            'image_pribadi' => 'required|image',
-            'image_ktm' => 'required|image',
-            'semester' => 'required|integer',
+            'foto_diri' => 'required|image',
+            'foto_ktm' => 'required|image',
+            'foto_bukti_byr' => 'required|image',
             'alamat' => 'required|string',
-            'note' => 'required|string'
+            'jk' => 'required|string',
+            'prodi' => 'required|string',
+            'nomor_mhs' => 'required|string',
+            'nomor_wa' => 'required|string',
+            'email' => 'required|string|email',
+            'nama' => 'required|string',
+            'rekening_id' => 'required|string',
+            'smstr' => 'required|string',
+            'tgl_lahir' => 'required|date',
         ];
         $data = $request->all();
         $validator = Validator::make($data, $rules);
-        if($validator->fails())
-        {
+        if ($validator->fails()) {
             return response()->json([
                 'success' => false,
                 'message' => $validator->errors()
             ], 400);
         }
 
-        $userId = Auth::user()->id;
-        $user = User::find($userId);
-        $data['user_id'] = $userId;
+        $rekeningId = $request->rekening_id;
+        $rekening = Rekening::find($rekeningId);
+        if (!$rekening) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'rekening not found'
+            ], 404);
+        }
 
-        $image_pribadi = $request->file('image_pribadi')->store('lk1', 'public');
-        $data['image_pribadi'] = url('storage/'.$image_pribadi);
+        $foto_diri = $request->file('foto_diri')->store('assets/daftarlk', 'public');
+        $data['foto_diri'] = $foto_diri;
+        $foto_ktm = $request->file('foto_ktm')->store('assets/daftarlk', 'public');
+        $data['foto_ktm'] = $foto_ktm;
+        $foto_bukti_byr = $request->file('foto_bukti_byr')->store('assets/daftarlk', 'public');
+        $data['foto_bukti_byr'] = $foto_bukti_byr;
+        $data['user_id'] = Auth::user()->id;
 
-        $image_ktm = $request->file('image_ktm')->store('lk1', 'public');
-        $data['image_ktm'] = url('storage/'.$image_ktm);
 
         $daftarLk = DaftarLk::create($data);
 
         return response()->json([
-            'success' => false,
-            'message' => 'daftar lk berhasil',
+            'status' => 'success',
+            'message' => 'berhasil create data daftar lk',
             'data' => $daftarLk
-        ], 200);
-
+        ], 201);
     }
 }

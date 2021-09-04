@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\EventController;
 use App\Http\Controllers\Api\FoundRaisController;
 use App\Http\Controllers\Api\JoinEventController;
 use App\Http\Controllers\Api\MethodPaymentController;
+use App\Http\Controllers\Api\RekeningController;
 use App\Http\Controllers\Api\SertfikatController;
 use App\Http\Controllers\Api\TripayPaymentController;
 use App\Http\Controllers\Api\TulisanController;
@@ -67,3 +68,9 @@ Route::post('webhook', [DonasiController::class, 'handleCallbackMidtrans'])->mid
 Route::post('api-intgerasi', [MethodPaymentController::class, 'alfamart']);
 // tripay
 Route::post('transaksi-tripay', [TripayPaymentController::class, 'create'])->middleware('auth:sanctum');
+
+Route::post('rekening/create', [RekeningController::class, 'create'])->middleware('auth:sanctum');
+Route::get('rekening', [RekeningController::class, 'index']);
+
+Route::post('daftarlk/create', [DaftarLkController::class, 'create'])->middleware('auth:sanctum');
+Route::post('daftarlk/cek', [DaftarLkController::class, 'isDaftarLk'])->middleware('auth:sanctum');
