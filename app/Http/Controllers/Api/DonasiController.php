@@ -130,7 +130,7 @@ class DonasiController extends Controller
                 'message' => 'orang_baik id not found'
             ], 404);
         }
-        $orangBaik->method_payment = $type;
+        $orangBaik->payment_method = $type;
         if ($transactionStatus === 'capture') {
             if ($fraudStatus === 'challenge') {
                 $orangBaik->status_pembayaran = 'challenge';
