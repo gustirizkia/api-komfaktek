@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Mockery\Undefined;
 
 class DonasiController extends Controller
 {
@@ -112,9 +113,9 @@ class DonasiController extends Controller
         $serverKey = env('MIDTRANS_SERVER_KEY');
         $transactionStatus = $data['transaction_status'];
         $type = $data['payment_type'];
-        // if ($data['fraud_status']) {
-        //     $fraudStatus = $data['fraud_status'];
-        // }
+        if ($data['fraud_status']) {
+            $fraudStatus = $data['fraud_status'];
+        }
 
         $mySignatureKey = hash('sha512', $orderId . $statusCode . $grossAmount . $serverKey);
         if ($signatureKey !== $mySignatureKey) {
@@ -134,7 +135,11 @@ class DonasiController extends Controller
         }
         $orangBaik->payment_method = $type;
         if ($transactionStatus === 'capture') {
-            $orangBaik->status_pembayaran = 'berhasil';
+            if ($fraudStatus === 'challenge') {
+                $orangBaik->status_pembayaran = 'challenge';
+            } elseif ($fraudStatus === 'accept') {
+                $orangBaik->status_pembayaran = 'berhasil';
+            }
         } elseif (
             $transactionStatus == 'cancel' ||
             $transactionStatus == 'deny' ||
