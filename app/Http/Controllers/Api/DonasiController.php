@@ -113,7 +113,7 @@ class DonasiController extends Controller
         $serverKey = env('MIDTRANS_SERVER_KEY');
         $transactionStatus = $data['transaction_status'];
         $type = $data['payment_type'];
-        if ($data['fraud_status']) {
+        if (!empty($data['fraud_status'])) {
             $fraudStatus = $data['fraud_status'];
         }
 
