@@ -135,7 +135,7 @@ class DonasiController extends Controller
             if ($fraudStatus === 'challenge') {
                 $orangBaik->status_pembayaran = 'challenge';
             } elseif ($fraudStatus === 'accept') {
-                $orangBaik->status_pembayaran = 'accept';
+                $orangBaik->status_pembayaran = 'berhasil';
             }
         } elseif (
             $transactionStatus == 'cancel' ||
@@ -145,6 +145,8 @@ class DonasiController extends Controller
             $orangBaik->status_pembayaran = 'failur';
         } elseif ($transactionStatus == 'pending') {
             $orangBaik->status_pembayaran = 'pending';
+        } elseif ($transactionStatus == 'settlement' || $transactionStatus == 'capture') {
+            $orangBaik->status_pembayaran = 'berhasil';
         }
         $orangBaik->save();
 
