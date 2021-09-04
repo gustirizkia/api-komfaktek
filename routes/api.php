@@ -63,7 +63,7 @@ Route::get('galang-dana/{id}', [FoundRaisController::class, 'detailFund']);
 // donasi
 Route::get('my-donasi', [DonasiController::class, 'myDonasi'])->middleware('auth:sanctum');
 Route::post('donasi/create', [DonasiController::class, 'create'])->middleware('auth:sanctum');
-Route::post('webhook', [DonasiController::class, 'handleCallbackMidtrans'])->middleware('auth:sanctum');
+Route::post('webhook', [DonasiController::class, 'handleCallbackMidtrans']);
 
 Route::post('api-intgerasi', [MethodPaymentController::class, 'alfamart']);
 // tripay
