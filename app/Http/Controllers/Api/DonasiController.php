@@ -172,7 +172,7 @@ class DonasiController extends Controller
         $userId = Auth::user()->id;
         $user = User::find($userId);
 
-        $orangBaik = OrangBaik::where('user_id', $userId)->with('fund')->get();
+        $orangBaik = OrangBaik::where('user_id', $userId)->orderBy('id', 'desc')->with('fund')->get();
 
         return response()->json([
             'success' => true,

@@ -38,6 +38,7 @@ Route::post('profile/update', [UserController::class, 'update'])->middleware('au
 
 // daftar lk
 Route::post('daftarlk/create', [DaftarLkController::class, 'create'])->middleware('auth:sanctum');
+Route::get('cek-daftar-lk', [DaftarLkController::class, 'isDaftarLk'])->middleware('auth:sanctum');
 
 // tulisan
 Route::get('tulisan', [TulisanController::class, 'index']);
@@ -60,6 +61,7 @@ Route::post('cek-sertifikat/index', [SertfikatController::class, 'index'])->midd
 // fund raise
 Route::get('galang-dana', [FoundRaisController::class, 'index']);
 Route::get('galang-dana/{id}', [FoundRaisController::class, 'detailFund']);
+Route::post('galang-dana/cari', [FoundRaisController::class, 'cari']);
 // donasi
 Route::get('my-donasi', [DonasiController::class, 'myDonasi'])->middleware('auth:sanctum');
 Route::post('donasi/create', [DonasiController::class, 'create'])->middleware('auth:sanctum');
