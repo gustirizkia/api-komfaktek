@@ -115,14 +115,14 @@ class UserSeeder extends Seeder
         }
 
         Rekening::create([
-            "nama_bank" => "BRI",
-            "nomor_bank" => "11092121",
-            "atas_nama" => "HMI KOMFAKTEK"
+            "nama_bank" => "BCA",
+            "nomor_bank" => "8990580279",
+            "atas_nama" => "MARTINAH HALIMAH"
         ]);
         Rekening::create([
-            "nama_bank" => "BCA",
-            "nomor_bank" => "0911278",
-            "atas_nama" => "HMI KOMFAKTEK"
+            "nama_bank" => "DANA",
+            "nomor_bank" => "085695397400",
+            "atas_nama" => "Fauzan nurahman"
         ]);
     }
 }
