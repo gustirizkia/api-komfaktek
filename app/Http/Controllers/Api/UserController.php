@@ -11,6 +11,16 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
+    public function index()
+    {
+        $user = User::get();
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'list data user',
+            'data' => $user
+        ]);
+    }
     public function profile()
     {
         $userId = Auth::user()->id;
