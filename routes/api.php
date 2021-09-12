@@ -83,4 +83,4 @@ Route::post('daftarlk/cek', [DaftarLkController::class, 'isDaftarLk'])->middlewa
 Route::get('admin/peserta-lk', [DaftarLkController::class, 'index'])->middleware('auth:sanctum', 'apiAdmin');
 Route::post('admin/peserta-lk/setsukses', [DaftarLkController::class, 'setSukses'])->middleware('auth:sanctum', 'apiAdmin');
 Route::post('admin/peserta-lk/setgagal', [DaftarLkController::class, 'setGagal'])->middleware('auth:sanctum', 'apiAdmin');
-Route::post('admin/user', [UserController::class, 'index'])->middleware('auth:sanctum', 'apiAdmin');
+Route::get('admin/user', [UserController::class, 'index'])->middleware('auth:sanctum', 'apiAdmin');
