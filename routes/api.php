@@ -39,6 +39,7 @@ Route::post('profile/update', [UserController::class, 'update'])->middleware('au
 // daftar lk
 Route::post('daftarlk/create', [DaftarLkController::class, 'create'])->middleware('auth:sanctum');
 Route::get('cek-daftar-lk', [DaftarLkController::class, 'isDaftarLk'])->middleware('auth:sanctum');
+Route::get('cek-gagal-lk', [DaftarLkController::class, 'isGagalLk'])->middleware('auth:sanctum');
 
 // tulisan
 Route::get('tulisan', [TulisanController::class, 'index']);
@@ -76,3 +77,9 @@ Route::get('rekening', [RekeningController::class, 'index']);
 
 Route::post('daftarlk/create', [DaftarLkController::class, 'create'])->middleware('auth:sanctum');
 Route::post('daftarlk/cek', [DaftarLkController::class, 'isDaftarLk'])->middleware('auth:sanctum');
+
+
+// admin 
+Route::get('admin/peserta-lk', [DaftarLkController::class, 'index'])->middleware('auth:sanctum', 'apiAdmin');
+Route::post('admin/peserta-lk/setsukses', [DaftarLkController::class, 'setSukses'])->middleware('auth:sanctum', 'apiAdmin');
+Route::post('admin/peserta-lk/setgagal', [DaftarLkController::class, 'setGagal'])->middleware('auth:sanctum', 'apiAdmin');

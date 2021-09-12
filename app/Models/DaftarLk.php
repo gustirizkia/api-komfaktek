@@ -17,4 +17,9 @@ class DaftarLk extends Model
     {
         return $this->belongsTo('App\Rekening');
     }
+
+    public function gagalLk()
+    {
+        return $this->hasOne('App\Models\GagalLk');
+    }
 }
