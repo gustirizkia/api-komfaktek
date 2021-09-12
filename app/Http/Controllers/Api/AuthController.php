@@ -51,7 +51,7 @@ class AuthController extends Controller
     {
         $rules = [
             'name' => 'required|string',
-            'email' => 'required|unique:users',
+            'email' => 'required|unique:users|email',
             'password' => 'required',
         ];
         $data = $request->all();
