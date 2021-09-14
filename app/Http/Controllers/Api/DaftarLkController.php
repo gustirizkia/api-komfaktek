@@ -15,7 +15,7 @@ class DaftarLkController extends Controller
 {
     public function index()
     {
-        $data = DaftarLk::get();
+        $data = DaftarLk::orderBy('id', 'desc')->get();
 
         return response()->json([
             'status' => 'success',
