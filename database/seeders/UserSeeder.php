@@ -24,7 +24,8 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker::create('id_ID');
+        $faker = Faker::create();
+        $faker = Faker::create();
         User::create([
             'name' => 'Gusti Maulana Rizkia',
             'email' => 'gustirizkia4@gmail.com',
@@ -43,7 +44,7 @@ class UserSeeder extends Seeder
             UserDetail::create([
                 'user_id' => $i,
                 'alamat' => $faker->address,
-                'profesi' => $faker->jobTitle . ', ' . $faker->company
+                'profesi' => $faker->company
             ]);
         }
         User::create([
@@ -55,7 +56,7 @@ class UserSeeder extends Seeder
         UserDetail::create([
             'user_id' => 6,
             'alamat' => $faker->address,
-            'profesi' => $faker->jobTitle . ', ' . $faker->company
+            'profesi' => $faker->company
         ]);
 
         for ($i = 0; $i < 4; $i++) {
@@ -85,7 +86,7 @@ class UserSeeder extends Seeder
                     'event_id' => $no,
                     'nama' => $faker->name,
                     'image' => 'https://source.unsplash.com/349x176/?people/',
-                    'title' => $faker->jobTitle . ', ' . $faker->company,
+                    'title' => $faker->company,
                     'email' => $faker->email,
                     'alamat' => $faker->address
                 ]);
