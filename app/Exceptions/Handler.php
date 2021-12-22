@@ -7,6 +7,14 @@ use Throwable;
 
 class Handler extends ExceptionHandler
 {
+    public function report(Throwable $exception) // <-- USE Throwable HERE
+    {
+        parent::report($exception);
+    }
+    public function render($request, Throwable $exception) // AND HERE
+    {
+        return parent::render($request, $exception);
+    }
     /**
      * A list of the exception types that are not reported.
      *

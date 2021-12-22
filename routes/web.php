@@ -19,3 +19,7 @@ Route::get('/', function () {
 });
 
 Route::get('/pdfcek', [SertfikatController::class, 'index']);
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
