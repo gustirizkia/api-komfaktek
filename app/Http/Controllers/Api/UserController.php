@@ -34,6 +34,7 @@ class UserController extends Controller
 
     public function update(Request $request)
     {
+
         $rules = [
             'name' => 'required',
             'alamat' => 'required',
@@ -61,8 +62,8 @@ class UserController extends Controller
         ]);
 
         if ($request->file('image')) {
-            $image = $request->file('image')->store('assets/profile', 'public');
-            $imgUrl = url('storage/' . $image);
+            $result = cloudinary()->upload($request->file('image')->getRealPath())->getSecurePath();
+            $imgUrl = $result;
 
             $user_detail->update([
                 'image' => $imgUrl
