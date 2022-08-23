@@ -62,8 +62,8 @@ class TulisanController extends Controller
         }
         if($request->file('image'))
         {
-            $image = $request->file('image')->store('tulisan', 'public');
-            $data['image'] = url('storage/'.$image);
+            $result = cloudinary()->upload($request->file('image')->getRealPath())->getSecurePath();
+            $data['image'] = $result;
         }
 
         $tulisan = Tulisan::create($data);

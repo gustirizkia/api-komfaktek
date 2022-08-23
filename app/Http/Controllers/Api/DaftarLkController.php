@@ -95,15 +95,15 @@ class DaftarLkController extends Controller
             ], 404);
         }
 
-        $foto_diri = $request->file('foto_diri')->store('assets/daftarlk', 'public');
+        $foto_diri = $result = cloudinary()->upload($request->file('foto_diri')->getRealPath())->getSecurePath();
         $data['foto_diri'] = $foto_diri;
-        $foto_ktm = $request->file('foto_ktm')->store('assets/daftarlk', 'public');
+        $foto_ktm = cloudinary()->upload($request->file('foto_ktm')->getRealPath())->getSecurePath();
         $data['foto_ktm'] = $foto_ktm;
-        $foto_bukti_byr = $request->file('foto_bukti_byr')->store('assets/daftarlk', 'public');
+        $foto_bukti_byr = cloudinary()->upload($request->file('foto_bukti_byr')->getRealPath())->getSecurePath();
         $data['foto_bukti_byr'] = $foto_bukti_byr;
         $data['user_id'] = Auth::user()->id;
         if ($request->file('foto_ktp')) {
-            $data['foto_ktp'] = $request->file('foto_ktp')->store('assets/daftarlk', 'public');
+            $data['foto_ktp'] = cloudinary()->upload($request->file('foto_ktp')->getRealPath())->getSecurePath();
         }
 
 
