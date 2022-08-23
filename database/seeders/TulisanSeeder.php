@@ -15,7 +15,7 @@ class TulisanSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker::create('id_ID');
+        $faker = Faker::create();
         for ($i = 1; $i < 10; $i++) {
             if ($i % 2 < 1) {
                 Tulisan::create([
