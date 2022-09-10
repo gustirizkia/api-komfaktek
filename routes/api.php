@@ -46,6 +46,7 @@ Route::get('tulisan', [TulisanController::class, 'index']);
 Route::get('tulisan/{id}', [TulisanController::class, 'show']);
 Route::delete('tulisan/{id}', [TulisanController::class, 'delete']);
 Route::post('tulisan/create', [TulisanController::class, 'create'])->middleware('auth:sanctum');
+Route::get('kategori', [TulisanController::class, 'kategori']);
 
 // event
 Route::get('event', [EventController::class, 'index']);
@@ -79,7 +80,7 @@ Route::post('daftarlk/create', [DaftarLkController::class, 'create'])->middlewar
 Route::post('daftarlk/cek', [DaftarLkController::class, 'isDaftarLk'])->middleware('auth:sanctum');
 
 
-// admin 
+// admin
 Route::get('admin/peserta-lk', [DaftarLkController::class, 'index'])->middleware('auth:sanctum', 'apiAdmin');
 Route::post('admin/peserta-lk/setsukses', [DaftarLkController::class, 'setSukses'])->middleware('auth:sanctum', 'apiAdmin');
 Route::post('admin/peserta-lk/setgagal', [DaftarLkController::class, 'setGagal'])->middleware('auth:sanctum', 'apiAdmin');

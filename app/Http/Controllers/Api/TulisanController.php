@@ -23,6 +23,15 @@ class TulisanController extends Controller
         ], 200);
     }
 
+    public function kategori(){
+        $data = KategoriTulisan::orderBy('id', 'desc')->get();
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $data
+        ]);
+    }
+
     public function create(Request $request)
     {
         $rules = [
