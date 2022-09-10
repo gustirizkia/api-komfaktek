@@ -60,7 +60,7 @@ class TulisanController extends Controller
         }
         $data['user_id'] = $userId;
 
-        $kategoriId = $request->input('kategori_tulisan_id');
+        $kategoriId = $request->kategori_tulisan_id;
         $kategori = KategoriTulisan::find($kategoriId);
         if(!$kategori)
         {
