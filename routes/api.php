@@ -40,13 +40,14 @@ Route::post('profile/update', [UserController::class, 'update'])->middleware('au
 Route::post('daftarlk/create', [DaftarLkController::class, 'create'])->middleware('auth:sanctum');
 Route::get('cek-daftar-lk', [DaftarLkController::class, 'isDaftarLk'])->middleware('auth:sanctum');
 Route::get('cek-gagal-lk', [DaftarLkController::class, 'isGagalLk'])->middleware('auth:sanctum');
-
+ 
 // tulisan
 Route::get('tulisan', [TulisanController::class, 'index']);
+Route::get('tulisan-saya', [TulisanController::class, 'tulisanSaya'])->middleware('auth:sanctum');
 Route::get('tulisan/{id}', [TulisanController::class, 'show']);
 Route::delete('tulisan/{id}', [TulisanController::class, 'delete']);
 Route::post('tulisan/create', [TulisanController::class, 'create'])->middleware('auth:sanctum');
-Route::get('kategori', [TulisanController::class, 'kategori']);
+Route::get('kategori-tulisan', [TulisanController::class, 'kategori']);
 
 // event
 Route::get('event', [EventController::class, 'index']);

@@ -13,6 +13,10 @@ class Tulisan extends Model
         'user_id', 'judul', 'image', 'teks', 'kategori_tulisan_id'
     ];
     
+    protected $casts = [
+        'created_at' => 'datetime:d M Y',
+    ];
+    
     public function user()
     {
         return $this->belongsTo(User::class);

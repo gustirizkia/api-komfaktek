@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use DB;
 
 class User extends Authenticatable
 {
@@ -56,8 +57,19 @@ class User extends Authenticatable
      * @var array
      */
     protected $appends = [
-        'profile_photo_url',
+        'profile_photo_url', 'image_profile'
     ];
+
+    public function getImageProfileAttribute(){
+        $item = DB::table('user_details')->where('user_id', $this->id)->first();
+        
+        if($item){
+            return $item->image;
+        }else{
+            $this->profile_photo_url;
+        }
+
+    }
 
     public function user_detail()
     {

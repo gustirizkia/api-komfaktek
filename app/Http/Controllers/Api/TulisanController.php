@@ -12,9 +12,18 @@ use Illuminate\Support\Facades\Validator;
 
 class TulisanController extends Controller
 {
+    public function tulisanSaya(){
+        $data = Tulisan::with('kategori', 'user')->where('user_id', auth()->user()->id)->orderBy('id', 'desc')->get();
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $data
+        ]);
+
+    }
     public function index()
     {
-        $data = Tulisan::with('kategori', 'user')->get();
+        $data = Tulisan::with('kategori', 'user')->orderBy('id', 'desc')->paginate(9);
 
         return response()->json([
             'success' => true,
@@ -25,10 +34,11 @@ class TulisanController extends Controller
 
     public function kategori(){
         $data = KategoriTulisan::orderBy('id', 'desc')->get();
-
+ 
         return response()->json([
             'status' => 'success',
-            'data' => $data
+            'data' => $data,
+            'message' => 'list kategori 01'
         ]);
     }
 
@@ -83,6 +93,23 @@ class TulisanController extends Controller
         ], 200);
     }
 
+    public function update(Request $request)
+    {
+        $data = $request->all();
+
+        if ($request->file('image')) {
+            $result = cloudinary()->upload($request->file('image')->getRealPath())->getSecurePath();
+            $data['image'] = $result;
+        }
+
+        $tulisan = Tulisan::where('id', $request->id)->update($data);
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $tulisan
+        ]);
+    }
+
     public function show($id)
     {
         $data = Tulisan::with('user', 'kategori')->find($id);
@@ -94,10 +121,13 @@ class TulisanController extends Controller
             ], 404);
         }
 
+        $tulisanLainnya = Tulisan::with('user', 'kategori')->where('id', '!=', $data->id)->limit(4)->get();
+
         return response()->json([
             'success' => false,
             'message' => 'data detail tulisan',
-            'data' => $data
+            'data' => $data,
+            'lainnya' => $tulisanLainnya
         ], 200);
     }
 
